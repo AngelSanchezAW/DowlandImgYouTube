@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Extraer Miniatura YouTube</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel=icon href=https://www.youtube.com/yts/img/favicon_48-vfl1s0rGh.png sizes="16x16" type="image/png">
+</head>
+<style type="text/css">
+    *{
+    	font-family: 'Open Sans', sans-serif;
+    	margin: 0px;
+    	padding: 0px;
+    }
+	#contenedor{
+		margin: 0 auto;
+		width: 900px;
+	}
+	#contenedor section{
+		background: #2b2b2b;
+		color: #ffffff;
+		margin-top: 10px;
+		padding-bottom: 20px;
+   		padding-top: 20px;
+   		text-align: center;
+	}
+	#contenedor button {
+		color: #ffffff;
+	    cursor: pointer;
+	    background: #327fde;
+	    border: none;
+	    padding: 2px;
+	}
+</style>
+<body>
+<div id="contenedor">
+	<section>
+		<label>Introduce la URL de YouTube: </label>
+		<input style="width:500px;" placeholder="https://www.youtube.com/watch?v=UbH4KPTnMOE" id="url" type="tex" name="url">
+		<button onclick="extraerImagen()">Extraer</button>
+	</section>
+	<div id="imagen">
+		<img src="https://i1.ytimg.com/vi/UbH4KPTnMOE/maxresdefault.jpg" width="100%"></div>
+		<div id="idVideo"><i style="color: #404040"><b>Id del video:<b/> UbH4KPTnMOE</i></div>
+		<div id="urlVideo"><i style="color: #404040"><b>URL de la imagen:<b/> https://i1.ytimg.com/vi/UbH4KPTnMOE/maxresdefault.jpg</i></div>
+    </div>
+<script>
+function extraerImagen() {
+	urlVideo = document.getElementById("url").value;
+	idVideo = urlVideo.substr(32, 11);
+	urlNueva = 'https://i1.ytimg.com/vi/'+idVideo+'/maxresdefault.jpg' 
+	imagen = '<img src="'+urlNueva+'" width="100%"></div>';
+	document.getElementById("imagen").innerHTML = imagen;
+	document.getElementById("idVideo").innerHTML = '<i style="color: #404040"><b>Id del video: <b/>'+idVideo+'</i></div>';
+	document.getElementById("urlVideo").innerHTML = '<i style="color: #404040"><b>URL de la imagen: <b/><a title="Miniatura" href="'+urlNueva+'">'+urlNueva+'</a></i></div>';
+
+	tamanoImagen();
+}
+function tamanoImagen() {
+	var mi_imagen = new Image();
+	mi_imagen.src= urlNueva;
+
+	if (mi_imagen.height == 0 && mi_imagen.width == 0 || mi_imagen.height == 90 && mi_imagen.width == 120) {
+		alert("Este video no cuenta con una miniatura");
+	}
+}
+</script>
+</body>
+</html>
+
