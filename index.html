@@ -53,14 +53,17 @@ function extraerImagen() {
 	document.getElementById("idVideo").innerHTML = '<i style="color: #404040"><b>Id del video: <b/>'+idVideo+'</i></div>';
 	document.getElementById("urlVideo").innerHTML = '<i style="color: #404040"><b>URL de la imagen: <b/><a title="Miniatura" href="'+urlNueva+'">'+urlNueva+'</a></i></div>';
 
-	tamanoImagen();
+	 setTimeout(function(){tamanoImagen(urlNueva)},1000); // 1000ms = 1s
 }
-function tamanoImagen() {
-	var mi_imagen = new Image();
-	mi_imagen.src= urlNueva;
 
-	if (mi_imagen.height == 0 && mi_imagen.width == 0 || mi_imagen.height == 90 && mi_imagen.width == 120) {
-		alert("Este video no cuenta con una miniatura");
+function tamanoImagen(urlImagen) {
+	urlImagen = urlImagen;
+	mi_imagen = new Image();
+	mi_imagen.src = urlImagen;
+
+	if (mi_imagen.height == 90) {
+		alert("Este video no cuenta con miniatura");
+		document.getElementById("urlVideo").innerHTML = '<i style="color: #404040">Este video no cuenta con miniatura.</i></div>';
 	}
 }
 </script>
